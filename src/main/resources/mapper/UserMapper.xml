@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--SQL片段，记录基础字段-->
+<mapper namespace="com.lzm.mybatisdemo.mapper.UserMapper">
+    <!--    Map<String,Object> selectMapByID(Long id);-->
+    <select id="selectMapByID" resultType="map">
+        select id, name, age, email
+        from user
+        where id = #{id}
+    </select>
+    <!--SQL片段，记录基础字段-->
+    <sql id="BaseColumns">id,name,age,email</sql>
+
+    <!--IPage<User> selectPageVo(Page<User> page, Integer age);-->
+    <select id="selectPageVo" resultType="com.lzm.mybatisdemo.pojo.User">
+        SELECT
+        <include refid="BaseColumns"></include>
+        FROM user
+        WHERE age > #{age}
+    </select>
+</mapper>

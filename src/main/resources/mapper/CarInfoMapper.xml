@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzm.mybatisdemo.mapper.CarInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.lzm.mybatisdemo.pojo.CarInfo">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="userid" column="userId" jdbcType="VARCHAR"/>
+            <result property="plate" column="plate" jdbcType="VARCHAR"/>
+            <result property="img" column="img" jdbcType="VARCHAR"/>
+            <result property="brand" column="brand" jdbcType="VARCHAR"/>
+            <result property="model" column="model" jdbcType="VARCHAR"/>
+            <result property="color" column="color" jdbcType="VARCHAR"/>
+            <result property="price" column="price" jdbcType="VARCHAR"/>
+            <result property="date" column="date" jdbcType="TIMESTAMP"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,userId,plate,
+        img,brand,model,
+        color,price,date,
+        remark
+    </sql>
+    <insert id="insertSelective">
+        insert into car_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="userid != null">userId,</if>
+            <if test="plate != null">plate,</if>
+            <if test="img != null">img,</if>
+            <if test="brand != null">brand,</if>
+            <if test="model != null">model,</if>
+            <if test="color != null">color,</if>
+            <if test="price != null">price,</if>
+            <if test="date != null">date,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id,jdbcType=INTEGER},</if>
+            <if test="userid != null">#{userid,jdbcType=VARCHAR},</if>
+            <if test="plate != null">#{plate,jdbcType=VARCHAR},</if>
+            <if test="img != null">#{img,jdbcType=VARCHAR},</if>
+            <if test="brand != null">#{brand,jdbcType=VARCHAR},</if>
+            <if test="model != null">#{model,jdbcType=VARCHAR},</if>
+            <if test="color != null">#{color,jdbcType=VARCHAR},</if>
+            <if test="price != null">#{price,jdbcType=VARCHAR},</if>
+            <if test="date != null">#{date,jdbcType=TIMESTAMP},</if>
+            <if test="remark != null">#{remark,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+</mapper>
